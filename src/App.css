@@ -1,0 +1,15 @@
+h1 {
+  text-align: center;
+}
+
+.Card {
+  padding-left: 20px;
+  border: 1px solid;
+  margin: 25px auto;
+  width: 350px;
+}
+
+.card-weather {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
