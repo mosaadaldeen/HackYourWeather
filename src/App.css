@@ -7,9 +7,53 @@ h1 {
   border: 1px solid;
   margin: 25px auto;
   width: 350px;
+  display: flex;
+  justify-content: space-between;
 }
 
 .card-weather {
   margin-top: 10px;
   margin-bottom: 10px;
+}
+
+form {
+  text-align: center;
+  padding: 20px;
+  margin: 20px 0 0 0;
+}
+
+.search {
+  font-size: 2em;
+  margin: 0;
+  text-align: center;
+}
+
+.search-input {
+  display: inline-flex;
+  flex-direction: row;
+}
+
+form input {
+  width: 250px;
+  border-radius: 10px;
+  outline: none;
+  border: 1px solid grey;
+  padding: 10px;
+  margin-right: 20px;
+}
+
+form button {
+  padding: 10px;
+  width: 70px;
+  outline: none;
+  border: none;
+  color: rgb(58, 57, 57);
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.error {
+  text-align: center;
+  color: red;
+  font-size: 2em;
 }
