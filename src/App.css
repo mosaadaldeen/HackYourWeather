@@ -7,8 +7,6 @@ h1 {
   border: 1px solid;
   margin: 25px auto;
   width: 350px;
-  display: flex;
-  justify-content: space-between;
 }
 
 .card-weather {
@@ -56,4 +54,14 @@ form button {
   text-align: center;
   color: red;
   font-size: 2em;
+}
+
+.removeCountry {
+  height: 40px;
+  width: 40px;
+  border: 4px solid;
+  font-weight: bold;
+  border-radius: 50%;
+  margin: 15px;
+  cursor: pointer;
 }

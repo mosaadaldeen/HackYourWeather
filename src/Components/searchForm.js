@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import CardCountry from "./Cards";
+import SingleCity from "./cardCity";
 import "../App.css";
 
 function SearchForm() {
   const [country, setCountry] = useState("");
-  const [data, setData] = useState(null);
+  const [data, setData] = useState([]);
   const [hasError, setHasError] = useState(false);
   const API_KEY = process.env.REACT_APP_OPENWEATHERMAP_API_KEY;
   const url = `https://api.openweathermap.org/data/2.5/weather?q=${country}&units=metric&appid=${API_KEY}`;
@@ -18,25 +18,19 @@ function SearchForm() {
         }
       })
       .then((result) => {
-        const {
-          name,
-          sys: { country },
-          main: { temp_max, temp_min },
-          weather: [{ main, description }],
-          coord: { lat, lon },
-        } = result;
-        setData({
-          name,
-          country,
-          main,
-          description,
-          lat,
-          lon,
-          temp_max,
-          temp_min,
-        });
+        const results = {
+          name: result.name,
+          country: result.sys.country,
+          weather: result.weather[0].main,
+          description: result.weather[0].description,
+          max_temp: result.main.temp_max,
+          min_temp: result.main.temp_min,
+          lon: result.coord.lon,
+          lat: result.coord.lat,
+        };
+        setData((oldResult) => [results, ...oldResult]);
       })
-      .catch((err) => {
+      .catch(() => {
         setHasError(true);
       });
   }
@@ -47,6 +41,11 @@ function SearchForm() {
     setCountry("");
   };
 
+  const removeCountry = (index) => {
+    const newCity = [...data];
+    newCity.splice(index, 1);
+    setData(newCity);
+  };
   return (
     <div>
       <form onSubmit={submitHandler}>
@@ -59,16 +58,23 @@ function SearchForm() {
               setCountry(e.target.value);
             }}
           />
-          <button onClick={fetchedData}>search</button>
+          <button type="submit">search</button>
         </div>
       </form>
       {hasError && <p className="error">Something went wrong</p>}
       {!hasError && data === null && (
         <p className="search">Enter a city name</p>
       )}
-      {!hasError && data !== null && <CardCountry data={data} />}
+      {!hasError &&
+        data !== null &&
+        data.map((cityWeather, index) => (
+          <SingleCity
+            key={index}
+            removeCountry={removeCountry}
+            data={cityWeather}
+          />
+        ))}
     </div>
   );
 }
-
 export default SearchForm;

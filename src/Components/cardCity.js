@@ -1,10 +1,12 @@
 import React from "react";
 
-const CardCountry = ({
+const SingleCity = ({
+  removeCountry,
+  index,
   data: { name, main, description, country, temp_max, temp_min, lat, lon },
 }) => {
   return (
-    <div className="Card">
+    <div className="Card" index={index}>
       <h2>
         {name}, {country}
       </h2>
@@ -17,8 +19,11 @@ const CardCountry = ({
       <p>
         Location: {lat}, {lon}
       </p>
+      <button className="removeCountry" onClick={() => removeCountry(index)}>
+        X
+      </button>
     </div>
   );
 };
 
-export default CardCountry;
+export default SingleCity;
