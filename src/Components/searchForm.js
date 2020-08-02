@@ -27,6 +27,7 @@ function SearchForm() {
           min_temp: result.main.temp_min,
           lon: result.coord.lon,
           lat: result.coord.lat,
+          id: result.id,
         };
         setData((oldResult) => [results, ...oldResult]);
       })

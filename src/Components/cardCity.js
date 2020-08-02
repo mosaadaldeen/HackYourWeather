@@ -1,14 +1,16 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const SingleCity = ({
   removeCountry,
-  index,
-  data: { name, main, description, country, temp_max, temp_min, lat, lon },
+  data: { id, name, main, description, country, temp_max, temp_min, lat, lon },
 }) => {
   return (
-    <div className="Card" index={index}>
+    <div className="Card" index={id}>
       <h2>
-        {name}, {country}
+        <Link to={`/${id}`}>
+          {name}, {country}
+        </Link>
       </h2>
       <div className="card-weather">
         <h3>{main}</h3>
@@ -19,7 +21,7 @@ const SingleCity = ({
       <p>
         Location: {lat}, {lon}
       </p>
-      <button className="removeCountry" onClick={() => removeCountry(index)}>
+      <button className="removeCountry" onClick={() => removeCountry(id)}>
         X
       </button>
     </div>

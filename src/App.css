@@ -40,7 +40,7 @@ form input {
   margin-right: 20px;
 }
 
-form button {
+button {
   padding: 10px;
   width: 70px;
   outline: none;
@@ -64,4 +64,11 @@ form button {
   border-radius: 50%;
   margin: 15px;
   cursor: pointer;
+}
+
+.cityDetails {
+  text-align: center;
+}
+.chart {
+  margin: 20px auto;
 }
